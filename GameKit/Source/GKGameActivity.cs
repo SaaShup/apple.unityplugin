@@ -8,6 +8,7 @@ using Apple.Core;
 using Apple.Core.Runtime;
 using Apple.GameKit.Leaderboards;
 using Apple.GameKit.Multiplayer;
+using UnityEngine.Scripting;
 
 namespace Apple.GameKit
 {
@@ -31,7 +32,10 @@ namespace Apple.GameKit
 
         static GKGameActivity()
         {
-            Interop.GKGameActivity_SetWantsToPlayCallback(OnWantsToPlay);
+            if (Availability.IsTypeAvailable<GKGameActivity>())
+            {
+                Interop.GKGameActivity_SetWantsToPlayCallback(OnWantsToPlay);
+            }
         }
 
 #if IOS_19_BETA_1_WANTSTOPLAY_MAIN_THREAD_WORKAROUND
@@ -76,6 +80,7 @@ namespace Apple.GameKit
 
         }
 
+        [Preserve]
         internal GKGameActivity(IntPtr pointer) : base(pointer)
         {
         }
