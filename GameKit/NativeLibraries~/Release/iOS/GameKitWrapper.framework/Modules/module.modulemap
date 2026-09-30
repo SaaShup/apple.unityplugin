@@ -7,5 +7,4 @@ framework module GameKitWrapper {
 
 module GameKitWrapper.Swift {
   header "GameKitWrapper-Swift.h"
-  requires objc
 }
